@@ -39,20 +39,21 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun gameLogic(cellSelected:Int, buttonSelected:Button){
+    private fun gameLogic(cellSelected:Int, buttonSelected:Button){
         if(activePlayer == 1){
             buttonSelected.text = "X"
+            buttonSelected.setTextColor(Color.WHITE)
             buttonSelected.isEnabled = false
             playerOne.add(cellSelected)
             buttonSelected.setBackgroundColor(Color.GREEN)
-            buttonSelected.setTextSize(24f)
+            buttonSelected.textSize = 24f
             checkWinner()
             activePlayer = 2
         }else{
             buttonSelected.text = "O"
             buttonSelected.setBackgroundColor(Color.BLUE)
             buttonSelected.setTextColor(Color.WHITE)
-            buttonSelected.setTextSize(24f)
+            buttonSelected.textSize = 24f
             buttonSelected.isEnabled = false
             playerTwo.add(cellSelected)
             checkWinner()
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun checkWinner(){
+    private fun checkWinner(){
         var winner = 0
         if(playerOne.contains(1) && playerOne.contains(2) && playerOne.contains(3)){
             winner = 1
@@ -116,18 +117,18 @@ class MainActivity : AppCompatActivity() {
 
         if(winner != 0){
             if(winner == 1){
-                Toast.makeText(this, "Player One Won!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Player One Won!!", Toast.LENGTH_LONG).show()
                 winDialog("Player One")
             }else if(winner ==2 ){
-                Toast.makeText(this, "Player Two Won!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Player Two Won!!", Toast.LENGTH_LONG).show()
                 winDialog("Player Two")
             }
         }
     }
 
-    fun winDialog(winner:String){
+    private fun winDialog(winner:String){
         val builder = AlertDialog.Builder(this)
-        builder.setTitle("${winner} Wins!")
+        builder.setTitle("$winner Wins!")
         builder.setMessage("Do you want to play again?")
         builder.setIcon(R.drawable.ic_winner)
         builder.setPositiveButton("Yes!"){ _, _ ->
