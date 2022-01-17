@@ -63,6 +63,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkWinner(){
         var winner = 0
+
+        // Player 1 conditions (Checks if the player has the winning combination)
         if(playerOne.contains(1) && playerOne.contains(2) && playerOne.contains(3)){
             winner = 1
         }
@@ -88,7 +90,7 @@ class MainActivity : AppCompatActivity() {
             winner = 1
         }
 
-        //Player 2 conditions
+        //Player 2 conditions (Checks if the player has the winning combination)
 
         if(playerTwo.contains(1) && playerTwo.contains(2) && playerTwo.contains(3)){
             winner = 2
@@ -115,6 +117,7 @@ class MainActivity : AppCompatActivity() {
             winner = 2
         }
 
+        // Displays a dialog for the winner of the game
         if(winner != 0){
             if(winner == 1){
                 Toast.makeText(this, "Player One Won!!", Toast.LENGTH_LONG).show()
@@ -126,6 +129,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // This method creates a dialog for the winner of the game
     private fun winDialog(winner:String){
         val builder = AlertDialog.Builder(this)
         builder.setTitle("$winner Wins!")
@@ -145,6 +149,7 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    // Checks if all buttons have been clicked and displays a 'Game over' dialog
    private fun gameOver(){
        if (cellList.size == 9){
            AlertDialog.Builder(this).setTitle("Game Over!").setIcon(R.drawable.ic_gameover).setMessage("Do you want to play again?")
@@ -158,6 +163,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    // Each button clicked is added to an ArrayList
     private fun buttonsDisabled(cellSelected: Int){
         if (!cellList.contains(cellSelected)){
             cellList.add(cellSelected)
